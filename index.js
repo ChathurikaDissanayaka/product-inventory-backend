@@ -23,12 +23,12 @@ connectDb()
 // Middleware
 app.use(express.json());
 
-app.post("/products", async (req, res) => {
+app.post("/api/products", async (req, res) => {
   const product = req.body;
 
   if(!product.name || !product.quantity || !product.price || !product.image){
     logger.error("Missing required fileds")
-    return res.status(400).json({success:false, message: error.message});
+    return res.status(400).json({success:false, message: "Missing required fileds"});
   }
 
   const newProduct = new Product(product);
