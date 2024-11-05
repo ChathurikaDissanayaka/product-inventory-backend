@@ -2,6 +2,7 @@ import express from "express";
 import connectDb from "./config/db.js";
 import logger from "./config/logger.js";
 import productRoutes from "./routes/product.routes.js";
+import requestLogger from "./middleware/requestLogger.js";
 import cors from "cors";
 
 const PORT = process.env.PORT || 4000;
@@ -22,6 +23,7 @@ connectDb()
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(requestLogger);
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
