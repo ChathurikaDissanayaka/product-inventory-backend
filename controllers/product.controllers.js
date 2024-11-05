@@ -15,6 +15,7 @@ export const getProducts = async (req, res) => {
 
 export const getProduct = async (req, res) => {
   const { id } = req.params;
+  console.log(id)
   try {
     const product = await Product.findById(id);
     if (!product) {
@@ -33,7 +34,7 @@ export const getProduct = async (req, res) => {
 
 export const addProduct = async (req, res) => {
   const product = req.body;
-  if (!product.name || !product.quantity || !product.price || !product.image) {
+  if (!product.name || !product.price || !product.image) {
     logger.error("Missing one or more required fields");
     return res
       .status(400)
